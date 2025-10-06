@@ -2,6 +2,9 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import UserRepository from "@db/entities/user/User.repository.js";
 import bcrypt from "bcrypt";
 import signJWT from "@utilities/signJWT.js";
+import dotenv from "dotenv";
+
+type JWTExpiration = `${number}ms` | `${number}s` | `${number}d` | `${number}h`
 
 interface UserLoginBody {
   username: string;
@@ -35,7 +38,7 @@ export const loginUser = async (
   const jwtToken = signJWT( req.server, {
     id: user.id,
     username: user.username
-  }, "60s")
+  }, process.env.JWT_EXPIRATION as JWTExpiration || "120s")
 
   reply.status(200).send({message: "Logged in successfully!", data: {accessToken: jwtToken}})
 };
