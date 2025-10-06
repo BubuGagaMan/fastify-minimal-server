@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import signJWT from "@utilities/signJWT.js";
 import dotenv from "dotenv";
 
+dotenv.config();
+
 type JWTExpiration = `${number}ms` | `${number}s` | `${number}d` | `${number}h`
 
 interface UserLoginBody {
