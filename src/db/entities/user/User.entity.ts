@@ -7,7 +7,6 @@ import {
 } from "typeorm";
 
 import type { Role } from "../role/Role.entity.js";
-import type { UserMetrics } from "../user_metrics/UserMetrics.entity.js";
 
 @Entity()
 export class User {
@@ -29,7 +28,4 @@ export class User {
 
   @OneToOne("Role", "user", {})
   role!: Relation<Role>;
-
-  @OneToOne("UserMetrics", "user", {})
-  userMetrics!: Relation<UserMetrics>
 }
