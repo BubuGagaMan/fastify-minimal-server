@@ -75,7 +75,6 @@ test("userForbiddenUserActions.test.ts", async (t: TestContext) => {
           username: "new_username",
         },
       });
-      console.log(getPutResponse.json());
       equal(getPutResponse.statusCode, 403);
       equal(
         getPutResponse.json().error,

@@ -46,9 +46,7 @@ test("adminUserActions.test.ts", async (t: TestContext) => {
             },
           });
           const getAllResponseJSON = await getAllResponse.json();
-          console.log(getAllResponseJSON)
           user1 = getAllResponseJSON.data.users[0];
-          console.log(user1)
           equal(getAllResponse.statusCode, 200);
           equal(
             getAllResponseJSON.message,
@@ -72,7 +70,6 @@ test("adminUserActions.test.ts", async (t: TestContext) => {
           getByIdResponseJSON.message,
           `User successfully retrieved!`
         );
-        console.log(user1)
         deepEqual(getByIdResponseJSON.data, { user: user1 });
       });
 

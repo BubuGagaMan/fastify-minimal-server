@@ -12,7 +12,6 @@ export const loginUser = async (
   req: FastifyRequest<{ Body: UserLoginBody }>,
   reply: FastifyReply
 ) => {
-  console.log("LOGIN ROUTE ENTERED");
   const { username, password } = req.body;
 
   const user = await UserRepository.findOne({
@@ -26,7 +25,6 @@ export const loginUser = async (
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password);
-  console.log("PASSWORD CORRECT:", isPasswordCorrect);
 
   if (!isPasswordCorrect) {
     return reply.status(401).send({
@@ -53,7 +51,5 @@ export const authenticateJWT = async (
 ) => {
 
   const accessJWT = req.headers['access-token']
-
-  console.log(accessJWT)
 
 };
